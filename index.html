@@ -100,7 +100,7 @@
     font-family:"Calligraffitti";
     font-size:xxx-large;
 }
-.xx {
+.cards-container {
     margin-top: 60px; /* Adjust for the height of the navbar */
     padding: 0 20px; /* Add padding on both sides */
     box-sizing: border-box;
@@ -110,25 +110,77 @@
     font-family:"Poppins", sans-serif;
  
 }
-.card {
-    width: calc(33.33% - 20px); /* Adjust for spacing and margins */
-    margin-bottom: 20px; /* Add space between rows */
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    box-sizing: border-box;
+.cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+
+        .card {
+            width: 30%;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px black ;
+            transition: 0.5s;
+
+        }
+
+        .card img {
+            width: 100%;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card-content p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .card-content button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .card-content button:hover {
+            background-color: #45a049;
+        }
+
+
+@media (max-width: 768px) {
+    .card {
+        width: calc(50% - 20px);
+    }
 }
-.card p
-{
-    font-size: small;
-    font-style: italic;
-}
-.card:hover
-{
-    transition: all 0.5s;
-    box-shadow: 0 0 20px black ;
+
+@media (max-width: 480px) {
+    .card {
+        width: 100%; 
+    }
 }
 button
 {
@@ -142,19 +194,6 @@ button
 button:hover
 {
     background-color: darkgreen;
-}
-
-
-@media (max-width: 768px) {
-    .card {
-        width: calc(50% - 20px); /* Adjust for spacing and margins on smaller screens */
-    }
-}
-
-@media (max-width: 480px) {
-    .card {
-        width: 100%; /* Full width on even smaller screens */
-    }
 }
 .ctp
 {
@@ -269,7 +308,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (prevScrollpos > currentScrollPos) {
             nav.style.top = '0';
         } else {
-            nav.style.top = '-100px'; // Adjust the value to hide the navbar completely
+            nav.style.top = '-100px'; 
         }
         prevScrollpos = currentScrollPos;
     });
@@ -289,72 +328,96 @@ document.addEventListener('DOMContentLoaded', function() {
 
     </div>
     <span class="menu"><center>-The Menu-</center></span>
-    <div class="xx">
+    <div class="cards-container">
         <div class="card">
-            <h3>Chicken tikka pizza</h3>
-            Rs.400
-            <img src="./ctp.jpg" class="ctp" alt="">
-            <p>A spicy Indian pizza with chicken, onions, bell peppers, and mozzarella.</p>
-            <button class="add-to-cart" data-item="Chicken tikka pizza" data-price="400">Add to cart</button>
+            <img src="./ctp.jpg" alt="Chicken tikka pizza">
+            <div class="card-content">
+                <h3>Chicken tikka pizza</h3>
+                <p>Rs.400</p>
+                <p>A spicy Indian pizza with chicken, onions, bell peppers, and mozzarella.</p>
+                <button class="add-to-cart" data-item="Chicken tikka pizza" data-price="400">Add to cart</button>
+            </div>
         </div>
         <div class="card">
-            <h3>Margherita</h3>
-            Rs.200
-            <img src="./marg.jpg" class="ctp" alt="">
-            <p>Classic Italian pizza with tomato sauce, basil, and mozzarella.</p>
-            <button class="add-to-cart" data-item="Margherita" data-price="200">Add to cart</button>
+            <img src="./marg.jpg" alt="Margherita">
+            <div class="card-content">
+                <h3>Margherita</h3>
+                <p>Rs.200</p>
+                <p>Classic Italian pizza with tomato sauce, basil, and mozzarella.</p>
+                <button class="add-to-cart" data-item="Margherita" data-price="200">Add to cart</button>
+            </div>
         </div>
         <div class="card">
-            <h3>Peppy paneer</h3>
-            Rs.289
-            <img src="./Paneer-Pizza-7.jpg" class="ctp" alt="">
-            <p> Indian-Italian fusion with paneer, sauce, onions, and cheese.</p>
-            <button class="add-to-cart" data-item="Peppy paneer" data-price="289">Add to cart</button>
-        </div>
-        <!-- Second Row -->
-        <div class="card">
-            <h3>Tangy Pepperoni</h3>
-            Rs.450
-            <img src="./pepp.jpeg" class="ctp" alt="">
-            <p>Classic with zesty sauce, pepperoni, and cheese.</p>
-            <button class="add-to-cart" data-item="Tangy Pepperoni" data-price="450">Add to cart</button>
+            <img src="./Paneer-Pizza-7.jpg" alt="Peppy paneer">
+            <div class="card-content">
+                <h3>Peppy paneer</h3>
+                <p>Rs.289</p>
+                <p>Indian-Italian fusion with paneer, sauce, onions, and cheese.</p>
+                <button class="add-to-cart" data-item="Peppy paneer" data-price="289">Add to cart</button>
+            </div>
         </div>
         <div class="card">
-            <h3>Pasta pizza</h3>
-            Rs.289
-            <img src="./pastp.jpg" class="ctp" alt="">
-            <p>Fusion of Alfredo, pasta, tomatoes, basil, and cheese.</p>
-            <button class="add-to-cart" data-item="Pasta pizza" data-price="289">Add to cart</button>
+            <img src="./pepp.jpeg" alt="Tangy Pepperoni">
+            <div class="card-content">
+                <h3>Tangy Pepperoni</h3>
+                <p>Rs.450</p>
+                <p>Classic with zesty sauce, pepperoni, and cheese.</p>
+                <button class="add-to-cart" data-item="Tangy Pepperoni" data-price="450">Add to cart</button>
+            </div>
         </div>
+        
         <div class="card">
-            <h3>Chicken kheema pizza</h3>
-            Rs.349
-            <img src="./chikeema.jpg" class="ctp" alt="">
-            <p>Indian pizza with spicy kheema and cheese.</p>
-            <button class="add-to-cart" data-item="Chicken kheema pizza" data-price="349">Add to cart</button>
+            <img src="./pastp.jpg" alt="Pasta pizza">
+            <div class="card-content">
+                <h3>Pasta pizza</h3>
+                <p>Rs.289</p>
+                <p>Fusion of Alfredo, pasta, tomatoes, basil, and cheese.</p>
+                <button class="add-to-cart" data-item="Pasta pizza" data-price="289">Add to cart</button>
+            </div>
         </div>
-        <!-- Third Row -->
+        
         <div class="card">
-            <h3>Onion and Tomato pizza</h3>
-            Rs.199
-            <img src="./otom.jpg" class="ctp" alt="">
-            <p>Simple pizza with tomato, onions, and cheese.</p>
-            <button class="add-to-cart" data-item="Onion and Tomato pizza" data-price="199">Add to cart</button>
+            <img src="./chikeema.jpg" alt="Chicken kheema pizza">
+            <div class="card-content">
+                <h3>Chicken kheema pizza</h3>
+                <p>Rs.349</p>
+                <p>Indian pizza with spicy kheema and cheese.</p>
+                <button class="add-to-cart" data-item="Chicken kheema pizza" data-price="349">Add to cart</button>
+            </div>
         </div>
+        
+       
+        
         <div class="card">
-            <h3>Barbeque Chicken pizza</h3>
-            Rs.389
-            <img src="./babr.jpg" class="ctp" alt="">
-            <p>Tangy BBQ sauce, chicken, onions, and cheese.</p>
-            <button class="add-to-cart" data-item="Barbeque Chicken pizza" data-price="389">Add to cart</button>
+            <img src="./otom.jpg" alt="Onion and Tomato pizza">
+            <div class="card-content">
+                <h3>Onion and Tomato pizza</h3>
+                <p>Rs.199</p>
+                <p>Simple pizza with tomato, onions, and cheese.</p>
+                <button class="add-to-cart" data-item="Onion and Tomato pizza" data-price="199">Add to cart</button>
+            </div>
         </div>
+        
         <div class="card">
-            <h3>Farmhouse pizza</h3>
-            Rs.249
-            <img src="./farm.jpg" class="ctp" alt="">
-            <p>Hearty pizza with ham, bacon, mushrooms, onions, peppers, and cheese.</p>
-            <button class="add-to-cart" data-item="Farmhouse pizza" data-price="249">Add to cart</button>
+            <img src="./babr.jpg" alt="Barbeque Chicken pizza">
+            <div class="card-content">
+                <h3>Barbeque Chicken pizza</h3>
+                <p>Rs.389</p>
+                <p>Tangy BBQ sauce, chicken, onions, and cheese.</p>
+                <button class="add-to-cart" data-item="Barbeque Chicken pizza" data-price="389">Add to cart</button>
+            </div>
         </div>
+        
+        <div class="card">
+            <img src="./farm.jpg" alt="Farmhouse pizza">
+            <div class="card-content">
+                <h3>Farmhouse pizza</h3>
+                <p>Rs.249</p>
+                <p>Hearty pizza with ham, bacon, mushrooms, onions, peppers, and cheese.</p>
+                <button class="add-to-cart" data-item="Farmhouse pizza" data-price="249">Add to cart</button>
+            </div>
+        </div>
+        
     </div>
 
     <div class="foot">
