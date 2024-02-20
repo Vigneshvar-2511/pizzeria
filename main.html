@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzeria</title>
+</head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Calligraffitti&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&family=Poppins:ital@0;1&display=swap" rel="stylesheet">
+<style>
+    .bgcontainer
+    {
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        height: 100vh;
+        margin-bottom: 40px;
+        animation-name: example;
+        animation-duration: 30s;
+        animation-iteration-count: infinite;
+    }
+    @keyframes example{
+   0%{
+     background-image: url("./pizza_1.jpg");
+   }
+   25%{
+     background-image: url("./pizza_2.jpg");
+   }
+   50%{
+     background-image: url("./pizza_3.jpg");
+   }
+   75%{
+     background-image: url("./pizza_4.jpg");
+   }
+   100%{
+     background-image: url("pizza_5.jpg");
+   }
+}
+    body
+    {
+        margin: 0;
+        padding: 0;
+    }
+    nav
+    {
+        text-align:right;
+        position: fixed; 
+        top: 0;
+        left: 0;
+        width: 100%;
+        height:6%;
+        /*background-color: rgba(0, 0, 0, 0.5);  Semi-transparent black background */
+        color: white;
+        padding-top: 15px;
+        font-family: "Poppins", sans-serif;
+    }
+    .nav1,.nav2,.nav3
+    {
+        padding: 10px;
+        margin-right: 10px; /* Add margin-right for spacing between nav items */
+        text-align: center;
+        margin-top: 10px;
+        border-radius: 6px;
+    }
+    .logo {
+        position:fixed;
+        top: 0px; /* Adjust the top distance from the edge */
+        left: 10px; /* Adjust the left distance from the edge */
+        height: 150px;
+    }
+    .nav1:hover, .nav2:hover, .nav3:hover {
+        transition: all 0.5s;
+        box-shadow: 0 0 50px white ;
+        background-color: rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+    }
+    .calligraffitti-regular {
+  font-family: "Calligraffitti", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.poppins-regular {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.poppins-regular-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+.menu
+{
+    font-family:"Calligraffitti";
+    font-size:xxx-large;
+}
+.xx {
+    margin-top: 60px; /* Adjust for the height of the navbar */
+    padding: 0 20px; /* Add padding on both sides */
+    box-sizing: border-box;
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow flex items to wrap to the next line */
+    justify-content: space-between; /* Distribute items evenly */
+    font-family:"Poppins", sans-serif;
+ 
+}
+.card {
+    width: calc(33.33% - 20px); /* Adjust for spacing and margins */
+    margin-bottom: 20px; /* Add space between rows */
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+}
+.card p
+{
+    font-size: small;
+    font-style: italic;
+}
+.card:hover
+{
+    transition: all 0.5s;
+    box-shadow: 0 0 20px black ;
+}
+button
+{
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 7px;
+    border: none;
+    background-color: rgb(0, 150, 0);
+    color: white;
+    height: 40px;
+}
+button:hover
+{
+    background-color: darkgreen;
+}
+
+
+@media (max-width: 768px) {
+    .card {
+        width: calc(50% - 20px); /* Adjust for spacing and margins on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        width: 100%; /* Full width on even smaller screens */
+    }
+}
+.ctp
+{
+    float: right;
+    height: 100px;
+    width: 200px;
+    bottom: 20px;
+    border-radius: 5px;
+    object-fit:cover;
+}
+a
+{
+    text-decoration: none;
+    color: white;
+}
+.foot
+{
+    background-color: rgb(13, 44, 57);
+    color:rgb(171, 171, 176);
+    padding: 20px;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.foot span
+{
+    padding-left: 10px;
+}
+.foot img
+{
+    height:150px;
+    width: 150px;
+}
+footer
+{
+    background-color: rgb(10, 33, 43);
+    color: rgb(171, 171, 176);
+    height:20px;
+    padding: 10px;
+    text-align: center;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    let cart = [];
+    function addToCart(itemName, itemPrice) {
+        cart.push({ name: itemName, price: itemPrice });
+        sessionStorage.setItem('cart', JSON.stringify(cart));
+    }
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', () => {
+            const itemName = button.dataset.item;
+            const itemPrice = parseFloat(button.dataset.price);
+            addToCart(itemName, itemPrice);
+            alert('Item added to cart!');
+            console.log('Item added:', itemName, itemPrice);
+        });
+    });
+});
+
+window.addEventListener('scroll', function() {
+        var logo = document.querySelector('.logo');
+        var bgcontainer = document.querySelector('.bgcontainer');
+        if (window.scrollY > bgcontainer.offsetHeight) {
+            logo.style.display = 'none';
+        } else {
+            logo.style.display = 'block';
+        }
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+    let cart = [];
+
+    function addToCart(itemName, itemPrice) {
+        cart.push({ name: itemName, price: itemPrice });
+        sessionStorage.setItem('cart', JSON.stringify(cart));
+        showCartIcon();
+    }
+
+    function showCartIcon() {
+        var cartIcon = document.createElement('div');
+        cartIcon.innerHTML = '<button id="viewCartBtn">View Cart</button>';
+        cartIcon.setAttribute('id', 'cartIcon');
+        cartIcon.style.position = 'fixed';
+        cartIcon.style.bottom = '20px';
+        cartIcon.style.right = '20px';
+        cartIcon.style.backgroundColor = 'green';
+        cartIcon.style.color = 'white';
+        cartIcon.style.borderRadius = '5px';
+        cartIcon.style.cursor = 'pointer';
+        cartIcon.style.zIndex = '9999';
+        document.body.appendChild(cartIcon);
+
+        document.getElementById('viewCartBtn').addEventListener('click', function() {
+            window.location.href = 'cart.html';
+        });
+    }
+
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', () => {
+            const itemName = button.dataset.item;
+            const itemPrice = parseFloat(button.dataset.price);
+            addToCart(itemName, itemPrice);
+            console.log('Item added:', itemName, itemPrice);
+        });
+    });
+});
+document.addEventListener('DOMContentLoaded', function() {
+    var prevScrollpos = window.pageYOffset;
+    var nav = document.querySelector('nav');
+
+    window.addEventListener('scroll', function() {
+        var currentScrollPos = window.pageYOffset;
+        if (prevScrollpos > currentScrollPos) {
+            nav.style.top = '0';
+        } else {
+            nav.style.top = '-100px'; // Adjust the value to hide the navbar completely
+        }
+        prevScrollpos = currentScrollPos;
+    });
+});
+    
+</script>
+<body>
+    
+    <nav>
+        <img src="./footlogo.png" alt="Logo" class="logo">
+        <span class="nav1">Contact us</span>
+        <span class="nav2">Locations</span>
+        <span class="nav3"><a href="cart.html">Cart</a></span>
+    </nav>
+
+    <div class="bgcontainer">
+
+    </div>
+    <span class="menu"><center>-The Menu-</center></span>
+    <div class="xx">
+        <div class="card">
+            <h3>Chicken tikka pizza</h3>
+            Rs.400
+            <img src="./ctp.jpg" class="ctp" alt="">
+            <p>A spicy Indian pizza with chicken, onions, bell peppers, and mozzarella.</p>
+            <button class="add-to-cart" data-item="Chicken tikka pizza" data-price="400">Add to cart</button>
+        </div>
+        <div class="card">
+            <h3>Margherita</h3>
+            Rs.200
+            <img src="./marg.jpg" class="ctp" alt="">
+            <p>Classic Italian pizza with tomato sauce, basil, and mozzarella.</p>
+            <button class="add-to-cart" data-item="Margherita" data-price="200">Add to cart</button>
+        </div>
+        <div class="card">
+            <h3>Peppy paneer</h3>
+            Rs.289
+            <img src="./Paneer-Pizza-7.jpg" class="ctp" alt="">
+            <p> Indian-Italian fusion with paneer, sauce, onions, and cheese.</p>
+            <button class="add-to-cart" data-item="Peppy paneer" data-price="289">Add to cart</button>
+        </div>
+        <!-- Second Row -->
+        <div class="card">
+            <h3>Tangy Pepperoni</h3>
+            Rs.450
+            <img src="./pepp.jpeg" class="ctp" alt="">
+            <p>Classic with zesty sauce, pepperoni, and cheese.</p>
+            <button class="add-to-cart" data-item="Tangy Pepperoni" data-price="450">Add to cart</button>
+        </div>
+        <div class="card">
+            <h3>Pasta pizza</h3>
+            Rs.289
+            <img src="./pastp.jpg" class="ctp" alt="">
+            <p>Fusion of Alfredo, pasta, tomatoes, basil, and cheese.</p>
+            <button class="add-to-cart" data-item="Pasta pizza" data-price="289">Add to cart</button>
+        </div>
+        <div class="card">
+            <h3>Chicken kheema pizza</h3>
+            Rs.349
+            <img src="./chikeema.jpg" class="ctp" alt="">
+            <p>Indian pizza with spicy kheema and cheese.</p>
+            <button class="add-to-cart" data-item="Chicken kheema pizza" data-price="349">Add to cart</button>
+        </div>
+        <!-- Third Row -->
+        <div class="card">
+            <h3>Onion and Tomato pizza</h3>
+            Rs.199
+            <img src="./otom.jpg" class="ctp" alt="">
+            <p>Simple pizza with tomato, onions, and cheese.</p>
+            <button class="add-to-cart" data-item="Onion and Tomato pizza" data-price="199">Add to cart</button>
+        </div>
+        <div class="card">
+            <h3>Barbeque Chicken pizza</h3>
+            Rs.389
+            <img src="./babr.jpg" class="ctp" alt="">
+            <p>Tangy BBQ sauce, chicken, onions, and cheese.</p>
+            <button class="add-to-cart" data-item="Barbeque Chicken pizza" data-price="389">Add to cart</button>
+        </div>
+        <div class="card">
+            <h3>Farmhouse pizza</h3>
+            Rs.249
+            <img src="./farm.jpg" class="ctp" alt="">
+            <p>Hearty pizza with ham, bacon, mushrooms, onions, peppers, and cheese.</p>
+            <button class="add-to-cart" data-item="Farmhouse pizza" data-price="249">Add to cart</button>
+        </div>
+    </div>
+
+    <div class="foot">
+        <img src="./footlogo.png" alt="">
+        <br>
+        <span>Contact us</span>
+        <span>Customer service</span>
+        <span>Nutritional information</span>
+        <span>Terms and conditions</span>
+    </div>
+    <footer class="cpy">
+        All rights reserved.Copyright &copy;Vigneshvar
+    </footer>
+    
+    
+</body>
+</html>

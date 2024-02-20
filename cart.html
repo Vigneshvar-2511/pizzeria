@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&family=Poppins:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+            font-family:"Poppins";
+            background-color: #f7f7f7;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        #cart-items {
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #cart-items p {
+            margin: 0;
+            padding: 5px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        #cart-items:hover
+        {
+            transition: all 0.5s;
+            box-shadow: 0 0 15px rgb(49, 129, 89) ;
+            cursor: pointer;
+        }
+
+        #total {
+            text-align: center;
+            color: #333;
+        }
+
+        .addr {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .addr h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .addr input {
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 10px;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+
+        .addr input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .addr input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .poppins-regular {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.poppins-regular-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+    </style>
+</head>
+<body>
+    <h1>Shopping Cart</h1>
+    <div id="cart-items"></div>
+    <h2 id="total"></h2>
+
+    <div class="addr">
+        <h3>Delivery Address</h3>
+        <form>
+            <input type="text" name="" id="" placeholder="Street/locality name">
+            <input type="text" placeholder="Flat number">
+            <input type="text" name="" id="" placeholder="City">
+            <input type="number" name="" id="" placeholder="Pincode">
+            <input type="submit" value="Proceed to Checkout">
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartData = sessionStorage.getItem('cart');
+
+            if (cartData) {
+                const cart = JSON.parse(cartData);
+                const cartItemsDiv = document.getElementById('cart-items');
+
+                cart.forEach(item => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.innerHTML = `<p>${item.name} - Rs.${item.price}</p>`;
+                    cartItemsDiv.appendChild(itemDiv);
+                });
+
+                const totalOrderValue = cart.reduce((total, item) => total + item.price, 0);
+                document.getElementById('total').innerText = `Total Order Value: Rs.${totalOrderValue}`;
+            } else {
+                document.getElementById('total').innerText = 'Your cart is empty.';
+            }
+        });
+    </script>
+</body>
+</html>
